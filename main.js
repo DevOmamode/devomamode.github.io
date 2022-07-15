@@ -54,7 +54,7 @@ window.onscroll = () => {
 }
   };
 
-const msgs = ["Thank you for visiting.", "I am a fullstack web developer.","I can create amazing websites and applications.","I have 5+ years of experience learning and working with various web technologies and languages.", "It may also interest you to know that i am fast at learning new stuffs given the right environment and tools.","All these portrays i am the right person for your job.", "Please, do kindly get in touch.", "Permit me to recap."];
+const msgs = ["Thank you for visiting.", "I am a fullstack web developer.","I can create amazing websites and applications.","I have 5+ years of experience learning and working with various web technologies and languages.", "In terms of academics, I am currently in my final semester pursuing a BSc. Degree in Business Management. So far, I have demonstrated a great academic prowess having being topping my class and faculty.","It may also interest you to know that i am fast at learning new stuffs and languages given the right environment and tools.","All these portrays i am the right person for your job.", "Please, do kindly get in touch.", "Permit me to recap."];
 var current_msg = 0;
 
 function displayMsg(){
