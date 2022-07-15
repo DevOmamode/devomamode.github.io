@@ -6,6 +6,7 @@
   list-style-type:none;
   font-family:poppins, San-Serif;
   flex-wrap:wrap;
+  color:inherit;
 }
 
 :root{
