@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Pay Joseph Omamode</title>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <style>
+    @media all and (min-width:800px){
+      body{
+        width:100vw;
+        padding-left:30vw;
+        padding-right:30vw;
+        height:100vh;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+      }
+    }
+  </style>
+  </head>
+  <body style="font-family:Poppins;">
+    <input type='hidden' id='amt' value="57100"/>
+    <h1 style='color:rgba(0,0,255,.7);'>Pay Joseph Omamode $100 (&#8358;57,100)</h1>
+    <div>
+      <p>Welcome, you are about to pay Joseph Omamode the sum of <b>$100</b> only for his web development services. This has been converted to the local Nigerian currency, Naira, which currently exchanges with the dollar at &#8358;571.2 per dollar ($1).</p>
+      <p>
+        <p><b>Email</b>:</p>
+        <input style="width:99%; padding:10px 0; font-size:1rem; padding-left:1%;" type='email' placeholder='e.g me@gmail.com' id='email'/>
+      </p>
+      <br/>
+      <div style="display:flex; justify-content:flex-end;"><button style="font-size:1.2rem; padding:5px 30px; background:rgba(0,0,255,.7); color:#fff; font-weight:bold; border:0; border-radius:2px;" onclick='pay()'>Pay</button></div>
+    </div>
+  </body>
+  <script>
+  function pay(){
+    let email = document.getElementById("email").value, amt = document.getElementById("amt").value;
+    if (email != "" && amt != "")
+    {
+    var handler = PaystackPop.setup({
+      key: 'pk_live_53caad5723241710b4acd61978e7890d04c7b063',
+      email: email,
+      amount: amt * 100,
+      ref: ''+Math.floor((Math.random() * 1000000000) + 1),
+      metadata: {
+         custom_fields: [
+            {
+                display_name: "Mobile Number",
+                variable_name: "mobile_number",
+                value: "+2349060943924"
+            }
+         ]
+      },
+      callback: function(response){
+          alert('Payment successful. The transaction reference is ' + response.reference + '.');
+      },
+      onClose: function(){
+          alert('Cancelled.');
+      }
+    });
+    handler.openIframe();
+  }
+  }
+  </script>
+</html>
