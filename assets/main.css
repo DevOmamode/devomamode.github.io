@@ -165,9 +165,9 @@ header#header .content div.d-links {
 }
 
 .abutton.secondary{
-  background-color: transparent;
-  color: #FF5722;
-  border: 2px solid #FF5722;
+  background-color: transparent !important;
+  color: #FF5722 !important;
+  border: 2px solid #FF5722 !important;
 }
 
 #snow-canvas {
