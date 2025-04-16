@@ -1,3 +1,4 @@
+let animationFrameId;
 //Angular
 var app = angular.module("devOmamode", ["ngRoute"]);
 app.config(function ($routeProvider) {
@@ -22,7 +23,7 @@ app.config(function ($routeProvider) {
 app.run(function($rootScope, $location) {
 $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
 const currentPath = $location.path();
-let animationFrameId;
+
 if (currentPath === "/") {
 const canvas = document.getElementById('snow-canvas');
 if (canvas){
