@@ -3,8 +3,7 @@ var app = angular.module("devOmamode", ["ngRoute"]);
 app.config(function ($routeProvider) {
     $routeProvider
         .when("/", {
-            templateUrl: "views/main.html",
-            controller: "MainInit"
+            templateUrl: "views/main.html"
         })
         .when("/projects", {
             templateUrl: "views/projects.html"
@@ -21,12 +20,73 @@ app.config(function ($routeProvider) {
 });
 
 app.run(function($rootScope, $location) {
-  $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
-    const currentPath = $location.path();
-    if (currentPath === "/") {
-      alert(1);
+$rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
+const currentPath = $location.path();
+let animationFrameId;
+if (currentPath === "/") {
+const canvas = document.getElementById('snow-canvas');
+if (canvas){
+const ctx = canvas.getContext('2d');
+
+let width, height;
+let snowflakes = [];
+
+function resize() {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+// 15 flakes in total, but only 2-3 visible at any moment
+function createSnowflakes() {
+  snowflakes = [];
+  const total = 10;
+  for (let i = 0; i < total; i++) {
+    snowflakes.push({
+      x: Math.random() * width,
+      y: Math.random() * -height, // start above the screen
+      height: Math.random() * 35 + 5,
+      width: Math.random() * 2,
+      speed: Math.random() * 0.5 + 0.3,
+      delay: Math.random() * 5000 // spread them out over time
+    });
+  }
+}
+createSnowflakes();
+
+function draw() {
+  ctx.clearRect(0, 0, width, height);
+  const now = Date.now();
+
+  ctx.fillStyle = 'white';
+
+  for (let flake of snowflakes) {
+    // Delay the start of some flakes to simulate 2-3 at a time
+    if (!flake.start) flake.start = now + flake.delay;
+    if (now >= flake.start) {
+      ctx.fillRect(flake.x, flake.y, flake.width, flake.height);
+      flake.y += flake.speed;
+
+      if (flake.y > height) {
+        flake.y = Math.random() * -height;
+        flake.x = Math.random() * width;
+        flake.start = now + Math.random() * 5000;
+      }
     }
-  });
+  }
+
+  animationFrameId = requestAnimationFrame(draw);
+}
+draw();
+}
+}else{
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId);
+  }
+  ctx.clearRect(0, 0, width, height);
+}
+});
 });
 
 //Active Navigation Link
@@ -191,62 +251,5 @@ window.onload = function () {
 
     setTimeout(function () {
         displayMsg(`.brief .text`);
-    }, 3000);
-
-const canvas = document.getElementById('snow-canvas');
-if (canvas){
-const ctx = canvas.getContext('2d');
-
-let width, height;
-let snowflakes = [];
-
-function resize() {
-  width = canvas.width = window.innerWidth;
-  height = canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resize);
-resize();
-
-// 15 flakes in total, but only 2-3 visible at any moment
-function createSnowflakes() {
-  snowflakes = [];
-  const total = 10;
-  for (let i = 0; i < total; i++) {
-    snowflakes.push({
-      x: Math.random() * width,
-      y: Math.random() * -height, // start above the screen
-      height: Math.random() * 35 + 5,
-      width: Math.random() * 2,
-      speed: Math.random() * 0.5 + 0.3,
-      delay: Math.random() * 5000 // spread them out over time
-    });
-  }
-}
-createSnowflakes();
-
-function draw() {
-  ctx.clearRect(0, 0, width, height);
-  const now = Date.now();
-
-  ctx.fillStyle = 'white';
-
-  for (let flake of snowflakes) {
-    // Delay the start of some flakes to simulate 2-3 at a time
-    if (!flake.start) flake.start = now + flake.delay;
-    if (now >= flake.start) {
-      ctx.fillRect(flake.x, flake.y, flake.width, flake.height);
-      flake.y += flake.speed;
-
-      if (flake.y > height) {
-        flake.y = Math.random() * -height;
-        flake.x = Math.random() * width;
-        flake.start = now + Math.random() * 5000;
-      }
-    }
-  }
-
-  requestAnimationFrame(draw);
-}
-draw();
-}  
+    }, 3000);  
 };
