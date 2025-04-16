@@ -154,8 +154,6 @@ header#header .content div.d-links {
     justify-content: center;
     align-items: center;
     padding: 0.5em 1.6em;
-    background: linear-gradient(to right, #f76b1c, #f54d2e);
-    color: var(--primarycolor);
     border: none;
     border-radius: 5px;
     font-size: 1em;
@@ -164,18 +162,23 @@ header#header .content div.d-links {
     transition: background 0.3s ease;
 }
 
+.abutton.primary{
+    background: linear-gradient(to right, #f76b1c, #f54d2e);
+    color: var(--primarycolor);
+}
+
 .abutton.secondary{
-  background-color: transparent !important;
-  color: #FF5722 !important;
-  border: 2px solid #FF5722 !important;
+   background-color: transparent !important;
+   color: #FF5722 !important;
+   border: 2px solid #FF5722 !important;
 }
 
 #snow-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 0;
+   position: fixed;
+   top: 0;
+   left: 0;
+   pointer-events: none;
+   z-index: 0;
 }
 
 header#header .content div.d-links a.slink:hover {
