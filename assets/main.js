@@ -3,7 +3,8 @@ var app = angular.module("devOmamode", ["ngRoute"]);
 app.config(function ($routeProvider) {
     $routeProvider
         .when("/", {
-            templateUrl: "views/main.html"
+            templateUrl: "views/main.html",
+            controller: "mainInit"
         })
         .when("/projects", {
             templateUrl: "views/projects.html"
@@ -17,6 +18,10 @@ app.config(function ($routeProvider) {
         .when("/hire", {
             templateUrl: "views/hire.html"
         });
+});
+
+app.controller("mainInit", function($scope) {
+  alert(1);
 });
 
 //Active Navigation Link
