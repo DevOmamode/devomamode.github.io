@@ -20,8 +20,13 @@ app.config(function ($routeProvider) {
         });
 });
 
-app.controller("MainInit", function($scope) {
-  alert(1);
+app.run(function($rootScope, $location) {
+  $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
+    const currentPath = $location.path();
+    if (currentPath === "/") {
+      alert(1);
+    }
+  });
 });
 
 //Active Navigation Link
