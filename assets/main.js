@@ -169,9 +169,14 @@ const msgs = [
   "Let me recap,"
 ];
 
-let current_msg = 0;
+let current_msg = 0, ccc = 0;
 
 function displayMsg(el) {
+    if (current_msg == 0 && ccc >= 2){
+        return;
+    }else if (current_msg == 0){
+        ccc += 1;
+    }
     var msg = msgs[current_msg],
         text = document.querySelector(el);
     if (isset(text)) {
@@ -188,7 +193,7 @@ function displayMsg(el) {
                 if (i == msg.length - 1) {
                     setTimeout(function () {
                         removeMsg(".brief .text");
-                    }, 1000);
+                    }, 1500);
                 }
             }, 20 * i);
         }
