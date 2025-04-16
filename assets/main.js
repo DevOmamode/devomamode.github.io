@@ -4,7 +4,7 @@ app.config(function ($routeProvider) {
     $routeProvider
         .when("/", {
             templateUrl: "views/main.html",
-            controller: "mainInit"
+            controller: "MainInit"
         })
         .when("/projects", {
             templateUrl: "views/projects.html"
@@ -20,7 +20,7 @@ app.config(function ($routeProvider) {
         });
 });
 
-app.controller("mainInit", function($scope) {
+app.controller("MainInit", function($scope) {
   alert(1);
 });
 
