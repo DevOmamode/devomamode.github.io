@@ -25,6 +25,9 @@ $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
 const currentPath = $location.path();
 
 if (currentPath === "/") {
+setTimeout(function () {
+        displayMsg(`.brief .text`);
+    }, 1000);    
 const canvas = document.getElementById('snow-canvas');
 if (canvas){
 const ctx = canvas.getContext('2d');
@@ -153,26 +156,17 @@ function isInViewport(element) {
     );
 }
 
-//Loading Projects
-var isLoaded = false;
-window.onscroll = () => {
-    if (isInViewport(document.querySelectorAll("header div.content")[0])) {
-        document.querySelectorAll(".nav-bar")[0].classList.remove("changebg");
-    } else {
-        document.querySelectorAll(".nav-bar")[0].classList.add("changebg");
-    }
-};
-
 const msgs = [
-    "Thank you for visiting.",
-    "I am a fullstack web developer.",
-    "I can create amazing websites and applications.",
-    "Since 2017, I have experienced learning and working with various web technologies and languages.",
-    "In terms of academics, I am a graduate with proven academic prowess.",
-    "It may also interest you to know that I am fast at learning new stuffs and languages given the right environment and tools.",
-    "All these portrays I am the right person for your job.",
-    "Please, do kindly get in touch.",
-    "Permit me to recap."
+  "Thank you for visiting my portfolio.",
+  "I am a full-stack web developer dedicated to crafting robust and scalable solutions.",
+  "My core expertise lies in backend development, where I build the foundation for seamless web applications.",
+  "I have the skills to develop stunning websites and powerful applications that meet your unique needs.",
+  "Since 2017, I've immersed myself in a diverse range of web technologies and programming languages, constantly expanding my skillset.",
+  "Academically, I am a graduate with a strong record of achievement, demonstrating a solid foundation for complex problem-solving.",
+  "Furthermore, I possess a proven ability to quickly learn new technologies and languages when provided with the appropriate resources and environment.",
+  "Therefore, my comprehensive skills and dedication make me the ideal candidate for your web development needs.",
+  "Ready to bring your vision to life? Contact me now, and let's build something extraordinary together.",
+  "Let me recap,"
 ];
 
 let current_msg = 0;
@@ -194,9 +188,9 @@ function displayMsg(el) {
                 if (i == msg.length - 1) {
                     setTimeout(function () {
                         removeMsg(".brief .text");
-                    }, 3000);
+                    }, 1000);
                 }
-            }, 30 * i);
+            }, 20 * i);
         }
     }
 }
@@ -224,33 +218,6 @@ function isset(el) {
     return el != "" && el != null && el !== undefined;
 }
 
-//Skills caret
 window.onload = function () {
-    const carets = document.querySelectorAll(
-        "section.skills .content ul li .item-det .caret"
-    );
-    carets.forEach(item => {
-        item.addEventListener("click", function () {
-            let parent = item.parentNode.parentNode.parentNode;
-            let desc = document.querySelectorAll(
-                "section.skills .content ul li .desc"
-            );
-            desc.forEach(e => {
-                if (
-                    parent
-                        .getElementsByClassName("desc")[0]
-                        .classList.contains("active") &&
-                    e.classList.contains("active")
-                ) {
-                } else {
-                    e.classList.remove("active");
-                }
-            });
-            parent.getElementsByClassName("desc")[0].classList.toggle("active");
-        });
-    });
-
-    setTimeout(function () {
-        displayMsg(`.brief .text`);
-    }, 3000);  
+    
 };
