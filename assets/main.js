@@ -1,4 +1,4 @@
-let animationFrameId;
+let animationFrameId, runCount = 0;
 //Angular
 var app = angular.module("devOmamode", ["ngRoute"]);
 app.config(function ($routeProvider) {
@@ -25,6 +25,7 @@ $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
 const currentPath = $location.path();
 
 if (currentPath === "/") {
+runCount = 0;
 setTimeout(function () {
         displayMsg(`.brief .text`);
     }, 1000);    
@@ -169,13 +170,13 @@ const msgs = [
   "Let me recap,"
 ];
 
-let current_msg = 0, ccc = 0;
+let current_msg = 0;
 
 function displayMsg(el) {
-    if (current_msg == 0 && ccc >= 2){
+    if (current_msg == 0 && runCount >= 2){
         return;
     }else if (current_msg == 0){
-        ccc += 1;
+        runCount += 1;
     }
     var msg = msgs[current_msg],
         text = document.querySelector(el);
@@ -183,6 +184,9 @@ function displayMsg(el) {
         text.innerHTML = "";
         if (current_msg > msgs.length - 2) {
             current_msg = 0;
+            if (runCount >= 2){
+                return;
+            }
         } else {
             current_msg += 1;
         }
